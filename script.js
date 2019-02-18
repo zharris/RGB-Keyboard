@@ -1,4 +1,5 @@
 const message = document.getElementById('message');
+let shifted = false;
 
 window.addEventListener('keydown', function(e) {
     keydownHandler(e.keyCode);
@@ -27,6 +28,7 @@ function keydownHandler(key) {
             break;
         case 16:
             // shift
+            shifted = true;
             break;
         case 17:
             // ctrl
@@ -45,7 +47,7 @@ function keydownHandler(key) {
             // left and right cmd
             break;
         default:
-            message.innerHTML += targetKey.innerHTML;
+            message.innerHTML += (shifted ? targetKey.dataset.shifted : targetKey.innerHTML);
             break;
     }
 }
@@ -53,4 +55,8 @@ function keydownHandler(key) {
 function keyupHandler(key) {
     const targetKey = document.querySelector('.key[data-keycode="' + key + '"]');
     targetKey.classList.remove('pressed');
+
+    if(key === 16) {
+        shifted = false;
+    }
 }
