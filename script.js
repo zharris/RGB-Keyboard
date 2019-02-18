@@ -2,15 +2,18 @@ const message = document.getElementById('message');
 let shifted = false;
 
 window.addEventListener('keydown', function(e) {
-    keydownHandler(e.keyCode);
+    console.log(e);
+    keydownHandler(e);
 });
 
 window.addEventListener('keyup', function(e) {
-    keyupHandler(e.keyCode);
+    keyupHandler(e);
 });
 
-function keydownHandler(key) {
-    const targetKey = document.querySelector('.key[data-keycode="' + key + '"]');
+function keydownHandler(e) {
+    const key = e.keyCode;
+    const targetKey = document.querySelectorAll('.key[data-keycode="' + key + '"]')[e.location - 1];
+
     if(targetKey) {
         targetKey.classList.add('pressed');
 
@@ -57,8 +60,10 @@ function keydownHandler(key) {
     }
 }
 
-function keyupHandler(key) {
-    const targetKey = document.querySelector('.key[data-keycode="' + key + '"]');
+function keyupHandler(e) {
+    key = e.keyCode;
+    targetKey = document.querySelectorAll('.key[data-keycode="' + key + '"]')[e.location - 1];
+
     if(targetKey) {
         targetKey.classList.remove('pressed');
 
