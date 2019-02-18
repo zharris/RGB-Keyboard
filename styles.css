@@ -7,9 +7,20 @@ body {
     background: #5F6062;
 }
 
+#message {
+    width: 800px;
+    margin: 100px auto 15px auto;
+    padding: 15px;
+    height: 150px;
+    border-radius: 3px;
+    background: #333;
+    color: #fefefe;
+    overflow: hidden;
+}
+
 #keyboard {
     width: 800px;
-    margin: 100px auto;
+    margin: 15px auto;
 }
 
 #keyboard .row {
