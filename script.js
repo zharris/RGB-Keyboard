@@ -11,52 +11,59 @@ window.addEventListener('keyup', function(e) {
 
 function keydownHandler(key) {
     const targetKey = document.querySelector('.key[data-keycode="' + key + '"]');
-    targetKey.classList.add('pressed');
+    if(targetKey) {
+        targetKey.classList.add('pressed');
 
-    console.log(targetKey.innerHTML);
-
-    switch(key) {
-        case 8:
-            // backspace
-            message.innerHTML = message.innerHTML.substr(0, message.innerHTML.length - 1);
-            break;
-        case 9:
-            // tab
-            break;
-        case 13:
-            // enter
-            break;
-        case 16:
-            // shift
-            shifted = true;
-            break;
-        case 17:
-            // ctrl
-            break;
-        case 18:
-            // opt
-            break;
-        case 20:
-            // caps lock
-            break;
-        case 32:
-            // spacebar
-            break;
-        case 91:
-        case 93:
-            // left and right cmd
-            break;
-        default:
-            message.innerHTML += (shifted ? targetKey.dataset.shifted : targetKey.innerHTML);
-            break;
+        switch(key) {
+            case 8:
+                // backspace
+                // if special character
+                if(message.innerHTML.charAt(message.innerHTML.length - 1) === ';') {
+                    message.innerHTML = message.innerHTML.substr(0, message.innerHTML.lastIndexOf('&'));
+                } else {
+                    message.innerHTML = message.innerHTML.substr(0, message.innerHTML.length - 1);
+                }
+                break;
+            case 9:
+                // tab
+                break;
+            case 13:
+                // enter
+                break;
+            case 16:
+                // shift
+                shifted = true;
+                break;
+            case 17:
+                // ctrl
+                break;
+            case 18:
+                // opt
+                break;
+            case 20:
+                // caps lock
+                break;
+            case 32:
+                // spacebar
+                break;
+            case 91:
+            case 93:
+                // left and right cmd
+                break;
+            default:
+                message.innerHTML += (shifted ? targetKey.dataset.shifted : targetKey.innerHTML);
+                break;
+        }
     }
 }
 
 function keyupHandler(key) {
     const targetKey = document.querySelector('.key[data-keycode="' + key + '"]');
-    targetKey.classList.remove('pressed');
+    if(targetKey) {
+        targetKey.classList.remove('pressed');
 
-    if(key === 16) {
-        shifted = false;
+        if(key === 16) {
+            shifted = false;
+        }
     }
 }
