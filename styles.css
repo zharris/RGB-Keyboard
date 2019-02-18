@@ -1,0 +1,67 @@
+* {
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    background: #5F6062;
+}
+
+#keyboard {
+    width: 800px;
+    margin: 100px auto;
+}
+
+#keyboard .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    align-content: stretch;
+}
+
+#keyboard .row .key {
+    box-shadow: 0 3px #000;
+    border-radius: 3px;
+    text-align: center;
+    flex-grow: 1;
+    padding: 14px 0;
+    margin: 3px 2px;
+    background: #333;
+    color: #fefefe;
+    cursor: pointer;
+}
+
+#keyboard .row .key:hover {
+    box-shadow: 0 2px #000;
+    transform: translateY(1px);
+}
+
+#keyboard .row .key.pressed {
+    box-shadow: 0 1px #000;
+    transform: translateY(2px);
+}
+
+#keyboard .row .key.key-default {
+    min-width: 50px;
+    max-width: 50px;
+}
+
+#keyboard .row .key.key-xs {
+    flex-grow: 2;
+}
+
+#keyboard .row .key.key-s {
+    flex-grow: 3;
+}
+
+#keyboard .row .key.key-m {
+    flex-grow: 4;
+}
+
+#keyboard .row .key.key-l {
+    flex-grow: 5;
+}
+
+#keyboard .row .key.spacebar {
+    flex-grow: 8;
+}
