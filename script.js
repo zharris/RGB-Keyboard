@@ -8,7 +8,7 @@ window.addEventListener('keydown', function(e) {
     if(preventDefaultOn.includes(e.keyCode)) {
         e.preventDefault();
     }
-    
+
     console.log(e);
     keydownHandler(e);
 });
@@ -19,7 +19,8 @@ window.addEventListener('keyup', function(e) {
 
 function keydownHandler(e) {
     const key = e.keyCode;
-    const targetKey = document.querySelectorAll('.key[data-keycode="' + key + '"]')[(e.location !== 0 ? e.location - 1 : 0)];
+    const targetKeys = document.querySelectorAll('.key[data-keycode="' + key + '"]');
+    const targetKey = (targetKeys.length > 1 ? targetKeys[(e.location !== 0 ? e.location - 1 : 0)] : targetKeys[0]);
 
     if(targetKey) {
         targetKey.classList.add('pressed');
@@ -65,8 +66,11 @@ function keydownHandler(e) {
                 message.innerHTML += '&nbsp;';
                 break;
             case 91:
+                // left cmd
+                break;
             case 93:
-                // left and right cmd
+                // right cmd
+                targetKey.classList.add('pressed');
                 break;
             default:
                 if(shifted) {
@@ -81,8 +85,9 @@ function keydownHandler(e) {
 }
 
 function keyupHandler(e) {
-    key = e.keyCode;
-    targetKey = document.querySelectorAll('.key[data-keycode="' + key + '"]')[(e.location !== 0 ? e.location - 1 : 0)];
+    const key = e.keyCode;
+    const targetKeys = document.querySelectorAll('.key[data-keycode="' + key + '"]');
+    const targetKey = (targetKeys.length > 1 ? targetKeys[(e.location !== 0 ? e.location - 1 : 0)] : targetKeys[0]);
 
     if(targetKey) {
         targetKey.classList.remove('pressed');
