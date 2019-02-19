@@ -12,7 +12,7 @@ window.addEventListener('keyup', function(e) {
 
 function keydownHandler(e) {
     const key = e.keyCode;
-    const targetKey = document.querySelectorAll('.key[data-keycode="' + key + '"]')[e.location - 1];
+    const targetKey = document.querySelectorAll('.key[data-keycode="' + key + '"]')[(e.location !== 0 ? e.location - 1 : 0)];
 
     if(targetKey) {
         targetKey.classList.add('pressed');
@@ -62,7 +62,7 @@ function keydownHandler(e) {
 
 function keyupHandler(e) {
     key = e.keyCode;
-    targetKey = document.querySelectorAll('.key[data-keycode="' + key + '"]')[e.location - 1];
+    targetKey = document.querySelectorAll('.key[data-keycode="' + key + '"]')[(e.location !== 0 ? e.location - 1 : 0)];
 
     if(targetKey) {
         targetKey.classList.remove('pressed');
