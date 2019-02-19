@@ -50,6 +50,8 @@ body {
 
 #heatmap .row .key {
     cursor: default;
+    box-shadow: none;
+    margin: 2px;
 }
 
 #keyboard .row .key:hover {
