@@ -23,14 +23,20 @@ body {
     margin: 15px auto;
 }
 
-#keyboard .row {
+#heatmap {
+    transform: scale(0.5);
+}
+
+#keyboard .row,
+#heatmap .row {
     display: flex;
     justify-content: space-between;
     align-items: stretch;
     align-content: stretch;
 }
 
-#keyboard .row .key {
+#keyboard .row .key,
+#heatmap .row .key {
     box-shadow: 0 3px #000;
     border-radius: 3px;
     text-align: center;
@@ -40,6 +46,10 @@ body {
     background: #333;
     color: #fefefe;
     cursor: pointer;
+}
+
+#heatmap .row .key {
+    cursor: default;
 }
 
 #keyboard .row .key:hover {
@@ -52,27 +62,33 @@ body {
     transform: translateY(2px);
 }
 
-#keyboard .row .key.key-default {
+#keyboard .row .key.key-default,
+#heatmap .row .key.key-default {
     min-width: 50px;
     max-width: 50px;
 }
 
-#keyboard .row .key.key-xs {
+#keyboard .row .key.key-xs,
+#heatmap .row .key.key-xs {
     flex-grow: 2;
 }
 
-#keyboard .row .key.key-s {
+#keyboard .row .key.key-s,
+#heatmap .row .key.key-s {
     flex-grow: 3;
 }
 
-#keyboard .row .key.key-m {
+#keyboard .row .key.key-m,
+#heatmap .row .key.key-m {
     flex-grow: 4;
 }
 
-#keyboard .row .key.key-l {
+#keyboard .row .key.key-l,
+#heatmap .row .key.key-l {
     flex-grow: 5;
 }
 
-#keyboard .row .key.spacebar {
+#keyboard .row .key.spacebar,
+#heatmap .row .key.spacebar {
     flex-grow: 8;
 }

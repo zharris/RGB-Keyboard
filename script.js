@@ -9,7 +9,7 @@ window.addEventListener('keydown', function(e) {
         e.preventDefault();
     }
 
-    console.log(e);
+    // console.log(e);
     keydownHandler(e);
 });
 
@@ -19,7 +19,7 @@ window.addEventListener('keyup', function(e) {
 
 function keydownHandler(e) {
     const key = e.keyCode;
-    const targetKeys = document.querySelectorAll('.key[data-keycode="' + key + '"]');
+    const targetKeys = document.querySelectorAll('#keyboard .key[data-keycode="' + key + '"]');
     const targetKey = (targetKeys.length > 1 ? targetKeys[(e.location !== 0 ? e.location - 1 : 0)] : targetKeys[0]);
 
     if(targetKey) {
@@ -81,12 +81,18 @@ function keydownHandler(e) {
 
                 break;
         }
+
+        // HEATMAP
+        const heatmapTargetKeys = document.querySelectorAll('#heatmap .key[data-keycode="' + key + '"]');
+        const heatmapTargetKey = (heatmapTargetKeys.length > 1 ? heatmapTargetKeys[(e.location !== 0 ? e.location - 1 : 0)] : heatmapTargetKeys[0]);
+
+        heat(heatmapTargetKey);
     }
 }
 
 function keyupHandler(e) {
     const key = e.keyCode;
-    const targetKeys = document.querySelectorAll('.key[data-keycode="' + key + '"]');
+    const targetKeys = document.querySelectorAll('#keyboard .key[data-keycode="' + key + '"]');
     const targetKey = (targetKeys.length > 1 ? targetKeys[(e.location !== 0 ? e.location - 1 : 0)] : targetKeys[0]);
 
     if(targetKey) {
@@ -104,9 +110,25 @@ function keyupHandler(e) {
                     targetKey.classList.add('pressed');
                 }
 
+                const heatmapTargetKey = document.querySelector('#heatmap .key[data-keycode="' + key + '"]');
+                heat(heatmapTargetKey);
+
                 break;
             default:
                 break;
         }
+    }
+}
+
+function heat(key) {
+    if(!key.classList.contains('heated')) {
+        key.classList.add('heated');
+        key.setAttribute('style', 'background: rgba(255, 0, 0, 0.1)');
+    } else {
+        const bgSplit = key.style.backgroundColor.split(', ');
+        const alpha = bgSplit[bgSplit.length - 1];
+        const newAlpha = (parseFloat(alpha.substr(0, alpha.length - 1)) === 0.9 ? 0.9 : parseFloat(alpha.substr(0, alpha.length - 1)) + 0.1);
+        
+        key.setAttribute('style', 'background: rgba(255, 0, 0, ' + newAlpha + ');');
     }
 }
