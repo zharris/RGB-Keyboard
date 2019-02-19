@@ -32,6 +32,7 @@ function keydownHandler(e) {
                 break;
             case 13:
                 // enter
+                message.innerHTML += '<br />';
                 break;
             case 16:
                 // shift
@@ -48,6 +49,7 @@ function keydownHandler(e) {
                 break;
             case 32:
                 // spacebar
+                message.innerHTML += '&nbsp;';
                 break;
             case 91:
             case 93:
