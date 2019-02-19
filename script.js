@@ -2,7 +2,13 @@ const message = document.getElementById('message');
 let shifted = false;
 let capsLock = false;
 
+const preventDefaultOn = [9];
+
 window.addEventListener('keydown', function(e) {
+    if(preventDefaultOn.includes(e.keyCode)) {
+        e.preventDefault();
+    }
+    
     console.log(e);
     keydownHandler(e);
 });
@@ -30,6 +36,7 @@ function keydownHandler(e) {
                 break;
             case 9:
                 // tab
+                message.innerHTML += '&#09;';
                 break;
             case 13:
                 // enter
