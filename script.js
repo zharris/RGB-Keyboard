@@ -1,5 +1,6 @@
 const message = document.getElementById('message');
 let shifted = false;
+let capsLock = false;
 
 window.addEventListener('keydown', function(e) {
     console.log(e);
@@ -46,6 +47,11 @@ function keydownHandler(e) {
                 break;
             case 20:
                 // caps lock
+                if(capsLock) {
+                    targetKey.classList.remove('pressed');
+                }
+
+                capsLock = !capsLock;
                 break;
             case 32:
                 // spacebar
@@ -56,7 +62,12 @@ function keydownHandler(e) {
                 // left and right cmd
                 break;
             default:
-                message.innerHTML += (shifted ? targetKey.dataset.shifted : targetKey.innerHTML);
+                if(shifted) {
+                    message.innerHTML += targetKey.dataset.shifted;
+                } else {
+                    message.innerHTML += (capsLock && targetKey.classList.contains('letter') ? targetKey.dataset.shifted : targetKey.innerHTML);
+                }
+
                 break;
         }
     }
@@ -69,8 +80,21 @@ function keyupHandler(e) {
     if(targetKey) {
         targetKey.classList.remove('pressed');
 
-        if(key === 16) {
-            shifted = false;
+        switch(key) {
+            case 16:
+                shifted = false;
+                break;
+            case 20:
+                if(capsLock) {
+                    capsLock = !capsLock;
+                } else {
+                    capsLock = !capsLock;
+                    targetKey.classList.add('pressed');
+                }
+
+                break;
+            default:
+                break;
         }
     }
 }
